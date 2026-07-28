@@ -175,6 +175,7 @@ class TaskCRUDService:
             new_task = await self.task_repo.get_by_id(new_task_id)
             if new_task:
                 await self.notion_service.add_single_task_to_notion(new_task)
+                confirm_text += TaskMessages.notion_task_added()
 
         return ActionResult(text=confirm_text, task_time=command.time)
 
@@ -250,8 +251,10 @@ class TaskCRUDService:
 
         # Получаем обновлённую задачу для синхронизации с Notion
         updated_task = await self.task_repo.get_by_id(task_id)
+        notion_was_updated = False
         if updated_task and updated_task.get("notion_added") == 1:
             await self.notion_service.update_task_in_notion(updated_task)
+            notion_was_updated = True
 
         # Время окончания показываем только если у задачи есть реальный срок
         display_end_time = get_display_end_time(localized_dt, new_duration) if display_time else None
@@ -266,6 +269,10 @@ class TaskCRUDService:
         # Если статус был обновлён, добавляем название статуса в подтверждение
         if command.status is not None:
             confirm_text += TaskMessages.status_updated_notification(command.status)
+
+        # Если задача была синхронизирована с Notion — уведомляем пользователя
+        if notion_was_updated:
+            confirm_text += TaskMessages.notion_task_updated()
 
         return ActionResult(text=confirm_text, task_time=command.time)
 

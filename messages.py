@@ -345,6 +345,26 @@ class TaskMessages:
         return translations.get(lang, translations["ru"])
 
     @classmethod
+    def notion_task_added(cls) -> str:
+        """Уведомление о том, что задача была добавлена в Notion."""
+        lang = user_lang.get()
+        translations = {
+            "ru": "\nДобавлено в Notion",
+            "en": "\nAdded to Notion"
+        }
+        return translations.get(lang, translations["ru"])
+
+    @classmethod
+    def notion_task_updated(cls) -> str:
+        """Уведомление о том, что задача была обновлена в Notion."""
+        lang = user_lang.get()
+        translations = {
+            "ru": "\nОбновлено в Notion",
+            "en": "\nUpdated in Notion"
+        }
+        return translations.get(lang, translations["ru"])
+
+    @classmethod
     def search_empty(cls) -> str:
         lang = user_lang.get()
         translations = {
