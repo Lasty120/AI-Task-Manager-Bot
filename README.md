@@ -237,7 +237,6 @@ Inside the container, a lightweight `aiohttp` server runs alongside long polling
 │   ├── migrations/                # .sql migrations + automatic runner
 │   ├── repositories/              # UserRepository, TaskRepository, SearchRepository,
 │   │                               # NotionWorkspaceRepository, base.py
-│   └── crud/                      # Legacy wrappers (gradually being replaced by repositories/)
 ├── handlers/                      # aiogram handlers by domain
 ├── keyboards/                     # Reply and inline keyboards
 ├── middlewares/                   # DbSessionMiddleware, UserMiddleware
