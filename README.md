@@ -141,6 +141,13 @@ The schema is applied through `database/migrations/*.sql` and the `database/migr
 - An API key for an OpenAI-compatible LLM provider (OpenAI, Gemini, xAI, local server, etc.)
 - (optional) Notion integration — the token is created by the bot's users themselves via `/add_notion`; no global setup is required in `.env`
 
+### LLM Configuration
+
+The bot uses two AI APIs for different tasks: speech-to-text transcription and smart command parsing.
+
+1. **Transcription:** Uses the Groq API with the `whisper-large-v3-turbo` model by default via the official Groq Python SDK. Get an API key from the [Groq Console](https://console.groq.com/home) and add it to `.env`.
+2. **Text Parsing:** Parsing extracted text doesn't require high-tier models. We recommend `gemini-2.5-flash` for its cost-efficiency and excellent instruction following. You can obtain an API key via [OpenRouter](https://openrouter.ai/), Google AI Studio, or OpenAI.
+
 ### 1. Clone the repository
 
 ```bash
