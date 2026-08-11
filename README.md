@@ -272,7 +272,6 @@ Inside the container, a lightweight `aiohttp` server runs alongside long polling
 - All tokens (Telegram, Groq, LLM provider, Notion) are read exclusively from environment variables.
 - The database connection for each Update is wrapped in a transaction — if an unhandled exception occurs in a handler, changes are automatically rolled back, protecting against partially applied operations.
 
-> **Note:** if, during development, you ever committed or shared files like `test.py` / `script.py` / `result.txt` containing real keys or tokens, make sure to revoke those keys in the corresponding services and generate new ones — even if the files themselves are now covered by `.gitignore`.
 
 ---
 
